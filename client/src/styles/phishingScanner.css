@@ -1,0 +1,601 @@
+/* Phishing URL Scanner — CyberWatch native page styles */
+
+.phish-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 1200px;
+}
+
+.phish-hero {
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: linear-gradient(135deg, rgba(13, 18, 31, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(8, 47, 73, 0.35) 100%);
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.phish-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.12), transparent 45%);
+  pointer-events: none;
+}
+
+.phish-hero-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: #38bdf8;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.phish-hero-title {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: #f1f5f9;
+}
+
+.phish-hero-sub {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 52rem;
+}
+
+.phish-scan-card {
+  background: rgba(13, 18, 31, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.phish-scan-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.phish-url-input {
+  flex: 1 1 280px;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(2, 6, 23, 0.65);
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.phish-url-input:focus {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+}
+
+.phish-scan-btn {
+  flex: 0 0 auto;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: #0f172a;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.phish-scan-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.phish-scan-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.phish-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.phish-loading-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid rgba(56, 189, 248, 0.15);
+  border-top-color: #38bdf8;
+  animation: phish-spin 0.9s linear infinite;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.25);
+}
+
+.phish-loading-text {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.phish-loading-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  width: min(240px, 80vw);
+  opacity: 0.7;
+}
+
+.phish-loading-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: rgba(56, 189, 248, 0.15);
+  animation: phish-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes phish-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes phish-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+    background: rgba(56, 189, 248, 0.45);
+  }
+}
+
+.phish-results-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.phish-glass-card {
+  background: rgba(13, 18, 31, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.phish-glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.phish-card-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #64748b;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.phish-span-4 {
+  grid-column: span 4;
+}
+
+.phish-span-6 {
+  grid-column: span 6;
+}
+
+.phish-span-8 {
+  grid-column: span 8;
+}
+
+.phish-span-12 {
+  grid-column: span 12;
+}
+
+.phish-risk-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.phish-risk-ring {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.phish-risk-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.phish-risk-ring-bg {
+  fill: none;
+  stroke: rgba(148, 163, 184, 0.15);
+  stroke-width: 8;
+}
+
+.phish-risk-ring-fg {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.phish-risk-score {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.phish-risk-val {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.phish-risk-of {
+  font-size: 0.65rem;
+  color: #64748b;
+  letter-spacing: 0.1em;
+}
+
+.phish-status-pill {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.phish-status-safe {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.phish-status-medium {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+
+.phish-status-high {
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.35);
+}
+
+.phish-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.phish-indicator-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  font-size: 0.88rem;
+}
+
+.phish-indicator-row:last-child {
+  border-bottom: none;
+}
+
+.phish-indicator-label {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.phish-indicator-val {
+  text-align: right;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.phish-indicator-val.danger {
+  color: #ff4d4d;
+}
+
+.phish-indicator-val.ok {
+  color: #4ade80;
+}
+
+.phish-indicator-val.warn {
+  color: #fbbf24;
+}
+
+.phish-ai-body {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.phish-ai-body h3,
+.phish-ai-body h2 {
+  font-size: 0.85rem;
+  color: #38bdf8;
+  margin: 1rem 0 0.5rem;
+  letter-spacing: 0.06em;
+}
+
+.phish-ai-body p {
+  margin: 0.5rem 0;
+}
+
+.phish-ai-body ul,
+.phish-ai-body ol {
+  margin: 0.35rem 0 0.75rem 1.1rem;
+  padding: 0;
+}
+
+.phish-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.phish-tech-item {
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.phish-tech-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.phish-tech-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  word-break: break-all;
+}
+
+.phish-history-table-wrap {
+  overflow-x: auto;
+}
+
+.phish-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.phish-history-table th {
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.phish-history-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  color: #cbd5e1;
+}
+
+.phish-history-table tr:hover td {
+  background: rgba(148, 163, 184, 0.04);
+}
+
+.phish-history-url {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phish-empty-history {
+  color: #64748b;
+  font-size: 0.88rem;
+  padding: 0.5rem 0;
+}
+
+.phish-page-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.phish-history-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.phish-history-toggle:hover {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.55);
+  transform: translateY(-1px);
+}
+
+.phish-history-toggle--compact {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.65rem;
+}
+
+.phish-history-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.2);
+  color: #e0f2fe;
+  font-size: 0.65rem;
+}
+
+.phish-history-section {
+  overflow: hidden;
+}
+
+.phish-history-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.phish-history-title-inline {
+  margin-bottom: 0.35rem;
+}
+
+.phish-history-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.phish-history-body {
+  overflow: hidden;
+}
+
+.phish-history-row {
+  transition: background 0.15s;
+}
+
+.phish-history-row--clickable {
+  cursor: pointer;
+}
+
+.phish-history-row--clickable:hover td,
+.phish-history-row--clickable:focus-visible td {
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.phish-history-row--clickable:focus-visible {
+  outline: none;
+}
+
+.phish-history-row--active td {
+  background: rgba(148, 163, 184, 0.08) !important;
+}
+
+.phish-history-row--partial {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.phish-history-row--loading td {
+  opacity: 0.6;
+}
+
+.phish-history-actions {
+  width: 2.5rem;
+  text-align: right;
+}
+
+.phish-history-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.phish-history-delete:hover {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.phish-recalled-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.phish-recalled-banner svg {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
+  .phish-span-4,
+  .phish-span-6,
+  .phish-span-8 {
+    grid-column: span 12;
+  }
+
+  .phish-tech-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .phish-scan-row {
+    flex-direction: column;
+  }
+
+  .phish-scan-btn {
+    width: 100%;
+  }
+
+  .phish-history-url {
+    max-width: 160px;
+  }
+}

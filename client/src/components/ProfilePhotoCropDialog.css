@@ -1,0 +1,66 @@
+.cw-profile-crop-modal {
+  width: min(520px, 100%);
+  max-height: min(92vh, 880px);
+}
+
+.cw-profile-crop-body {
+  padding: 0.65rem 1rem 0.35rem;
+}
+
+.cw-profile-crop-hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  color: var(--cw-muted);
+  line-height: 1.45;
+}
+
+.cw-profile-crop-stage {
+  position: relative;
+  width: 100%;
+  height: min(52vh, 420px);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid var(--cw-border);
+}
+
+.cw-profile-crop-stage .react-easy-crop-container {
+  border-radius: 10px;
+}
+
+.cw-profile-crop-zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.cw-profile-crop-zoom label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--cw-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cw-profile-crop-zoom input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--cw-cyan);
+}
+
+.cw-profile-crop-zoom-val {
+  font-size: 0.72rem;
+  color: var(--cw-cyan);
+  font-variant-numeric: tabular-nums;
+  min-width: 3.25rem;
+  text-align: right;
+}
+
+.cw-profile-crop-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--cw-border);
+}

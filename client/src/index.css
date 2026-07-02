@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap");
+
+/*
+ * Theme font tokens — same names as a Tailwind v4 @theme block would use.
+ * (This project uses plain CSS; there is no @theme processor here.)
+ */
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background: var(--cw-bg, #05080f);
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-inter);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Optional helpers for one-off components */
+.font-inter {
+  font-family: var(--font-inter);
+}
+.font-space {
+  font-family: var(--font-space);
+}
+
+@media print {
+  .cw-sidebar,
+  .cw-topbar,
+  .cw-btn-export {
+    display: none !important;
+  }
+  .cw-content {
+    padding: 0 !important;
+  }
+}

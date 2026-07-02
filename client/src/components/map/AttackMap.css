@@ -1,0 +1,254 @@
+/* Leaflet + mission-control chrome for National Intelligence Grid */
+@import "leaflet/dist/leaflet.css";
+
+.attack-map-shell {
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d121f;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
+  transition:
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.attack-map-shell:hover {
+  border-color: rgba(0, 174, 239, 0.22);
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(0, 174, 239, 0.06);
+}
+
+.attack-map-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  background: linear-gradient(180deg, #0f1624, #0d121f);
+  transition: border-color 0.35s ease;
+}
+
+.attack-map-shell:hover .attack-map-head {
+  border-bottom-color: rgba(0, 174, 239, 0.18);
+}
+
+.attack-map-title {
+  font-family: var(--font-inter);
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #f8fafc;
+  transition: letter-spacing 0.4s ease, text-shadow 0.4s ease;
+}
+
+.attack-map-title svg {
+  color: #22d3ee;
+  transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1), filter 0.35s ease;
+}
+
+.attack-map-shell:hover .attack-map-title svg {
+  transform: scale(1.06) rotate(-6deg);
+  filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.5));
+}
+
+.attack-map-sub {
+  margin: 0.35rem 0 0;
+  font-size: 0.65rem;
+  color: #8896a8;
+  letter-spacing: 0.06em;
+  max-width: 36rem;
+  line-height: 1.45;
+}
+
+.attack-map-live {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #a5f3fc;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.attack-map-shell:hover .attack-map-live {
+  border-color: rgba(0, 174, 239, 0.55);
+  box-shadow: 0 0 20px rgba(0, 174, 239, 0.15);
+}
+
+.attack-map-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 10px #22d3ee;
+  animation: attack-map-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes attack-map-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.15);
+  }
+}
+
+.attack-map-body {
+  position: relative;
+}
+
+.attack-map-leaflet {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: #050a12;
+}
+
+.attack-map-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(5, 10, 18, 0.92);
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+}
+
+.attack-map-overlay-err {
+  color: #fecaca;
+}
+
+.attack-map-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 174, 239, 0.2);
+  border-top-color: #00aeef;
+  animation: attack-map-spin 0.8s linear infinite;
+}
+
+@keyframes attack-map-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.attack-map-err-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.attack-map-err-body {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #cbd5e1;
+}
+
+.attack-map-err-body code {
+  font-size: 0.68rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  color: #e2e8f0;
+}
+
+.attack-map-legend {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 400;
+  background: rgba(13, 22, 36, 0.92);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem 0.55rem;
+  font-size: 0.58rem;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+.attack-map-legend-title {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.1em;
+}
+
+.attack-map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+
+.attack-map-legend .lg {
+  width: 14px;
+  height: 8px;
+  border-radius: 2px;
+}
+.attack-map-legend .sw4 {
+  background: #7f1d1d;
+}
+.attack-map-legend .sw3 {
+  background: #dc2626;
+}
+.attack-map-legend .sw2 {
+  background: #f97316;
+}
+.attack-map-legend .sw1 {
+  background: #1e3a8a;
+}
+
+/* Map chrome: Inter; Leaflet tooltips: system UI (see also inline styles in AttackMap.jsx). */
+.attack-map-body .leaflet-container {
+  font-family: var(--font-inter);
+}
+
+.attack-map-body .leaflet-tooltip {
+  font-family: system-ui, sans-serif;
+}
+
+.attack-map-tooltip .attack-map-tip {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attack-map-live-dot {
+    animation: none;
+  }
+  .attack-map-shell:hover .attack-map-title svg {
+    transform: none;
+    filter: none;
+  }
+}

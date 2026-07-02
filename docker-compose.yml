@@ -1,0 +1,16 @@
+# Primary database for this project (React frontend → Node API → MongoDB).
+# From repo root:  docker compose up -d
+# URI for app + scraper:  mongodb://127.0.0.1:27017
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: ransomware-india-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ransomware_india_mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  ransomware_india_mongo_data:

@@ -1,0 +1,132 @@
+.status-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  white-space: normal;
+  line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+
+.status-badge:hover {
+  transform: scale(1.03);
+}
+
+.st-default {
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.35);
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.st-alert {
+  color: #93c5fd;
+  border-color: rgba(147, 197, 253, 0.5);
+  background: rgba(30, 58, 138, 0.35);
+}
+
+.st-mitigated {
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.35);
+  background: rgba(51, 65, 85, 0.45);
+}
+
+.st-critical {
+  color: #fff;
+  background: rgba(220, 38, 38, 0.85);
+  border-color: rgba(248, 113, 113, 0.5);
+  animation: st-critical-pulse 2s ease-in-out infinite;
+}
+
+@keyframes st-critical-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 12px 1px rgba(248, 113, 113, 0.45);
+  }
+}
+
+.st-probing {
+  color: #bfdbfe;
+  border-color: rgba(59, 130, 246, 0.45);
+  background: rgba(30, 64, 175, 0.35);
+}
+
+.st-leak {
+  color: #fecaca;
+  background: rgba(127, 29, 29, 0.65);
+  border-color: rgba(248, 113, 113, 0.45);
+  letter-spacing: 0.04em;
+  font-size: 0.6rem;
+}
+
+.st-verified {
+  color: #bbf7d0;
+  background: rgba(22, 101, 52, 0.45);
+  border-color: rgba(74, 222, 128, 0.35);
+}
+
+.st-active {
+  color: #bbf7d0;
+  background: rgba(21, 128, 61, 0.4);
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.st-disbanded {
+  color: #bae6fd;
+  background: rgba(12, 74, 110, 0.4);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.st-maint {
+  color: #e2e8f0;
+  background: rgba(71, 85, 105, 0.5);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.st-dynamic {
+  color: #a5f3fc;
+  border-color: rgba(34, 211, 238, 0.4);
+  background: rgba(8, 51, 68, 0.5);
+}
+
+.st-restricted {
+  color: #fcd34d;
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(113, 63, 18, 0.4);
+}
+
+.st-secret {
+  color: #fecaca;
+  border-color: rgba(248, 113, 113, 0.5);
+  background: rgba(69, 10, 10, 0.55);
+}
+
+.st-conf {
+  color: #e9d5ff;
+  border-color: rgba(192, 132, 252, 0.4);
+  background: rgba(59, 7, 100, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-critical {
+    animation: none;
+  }
+  .status-badge:hover {
+    transform: none;
+  }
+}

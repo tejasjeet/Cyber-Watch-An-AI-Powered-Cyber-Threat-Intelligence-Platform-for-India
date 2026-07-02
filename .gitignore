@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment & secrets (never commit real keys)
+.env
+.env.local
+.env.*.local
+server/.env
+
+# Build outputs
+dist/
+client/dist/
+
+# Generated / scraped data (populated by scraper or Mongo sync)
+server/data/attacks.json
+server/data/india_attacks.json
+server/data/*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
