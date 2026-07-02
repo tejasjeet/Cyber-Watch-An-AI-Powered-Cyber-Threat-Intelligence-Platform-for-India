@@ -815,6 +815,35 @@ mountAuthRoutes(app, {
   jwtExpires: JWT_EXPIRES_IN,
 });
 
+function mountClientStatic() {
+  const clientDist = path.join(__dirname, "..", "client", "dist");
+  const indexHtml = path.join(clientDist, "index.html");
+  if (!fs.existsSync(indexHtml)) {
+    console.warn("client/dist not found — serving API only (run client build for full app UI).");
+    return;
+  }
+  app.use(
+    express.static(clientDist, {
+      index: false,
+      maxAge: process.env.NODE_ENV === "production" ? "1h" : 0,
+    })
+  );
+  app.get("*", (req, res, next) => {
+    if (
+      req.method !== "GET" ||
+      req.path.startsWith("/api") ||
+      req.path.startsWith("/socket.io") ||
+      req.path.startsWith("/hooks")
+    ) {
+      return next();
+    }
+    res.sendFile(indexHtml);
+  });
+  console.log("Serving React app from client/dist");
+}
+
+mountClientStatic();
+
 server.listen(PORT, async () => {
   const ok = await connectMongo();
   if (REQUIRE_MONGO && !ok) {

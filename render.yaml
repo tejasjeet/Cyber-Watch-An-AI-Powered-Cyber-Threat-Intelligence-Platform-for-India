@@ -1,0 +1,35 @@
+# Render Blueprint — Cyber Watch India
+# Dashboard: New > Blueprint > connect this repo, then set secret env vars when prompted.
+
+services:
+  - type: web
+    name: cyber-watch-india
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm run build && pip3 install -r scraper/requirements.txt
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20.11.0"
+      - key: PYTHON
+        value: python3
+      - key: REQUIRE_MONGO
+        value: "true"
+      - key: MONGODB_DB
+        value: ransomware_india
+      - key: MONGODB_ATTACKS_COLLECTION
+        value: attacks
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+      - key: GOOGLE_AI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GOOGLE_SAFE_BROWSING_API_KEY
+        sync: false

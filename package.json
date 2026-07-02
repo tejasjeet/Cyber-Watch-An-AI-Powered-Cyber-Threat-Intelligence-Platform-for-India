@@ -1,0 +1,11 @@
+{
+  "name": "cyber-watch-india",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "npm ci --prefix client && npm run build --prefix client && npm ci --prefix server",
+    "start": "npm start --prefix server"
+  }
+}
