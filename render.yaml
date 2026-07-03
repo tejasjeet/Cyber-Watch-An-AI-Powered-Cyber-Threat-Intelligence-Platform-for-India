@@ -7,7 +7,7 @@ services:
     runtime: node
     plan: free
     region: singapore
-    buildCommand: npm run build && pip3 install -r scraper/requirements.txt
+    buildCommand: npm install && npm run build && python3 -m pip install --user -r scraper/requirements.txt
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:

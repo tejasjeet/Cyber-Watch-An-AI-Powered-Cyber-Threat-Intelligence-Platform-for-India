@@ -844,7 +844,7 @@ function mountClientStatic() {
 
 mountClientStatic();
 
-server.listen(PORT, async () => {
+server.listen(PORT, "0.0.0.0", async () => {
   const ok = await connectMongo();
   if (REQUIRE_MONGO && !ok) {
     console.error(
