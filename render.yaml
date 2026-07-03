@@ -7,7 +7,7 @@ services:
     runtime: node
     plan: free
     region: singapore
-    buildCommand: npm install && npm run build && python3 -m pip install --user -r scraper/requirements.txt
+    buildCommand: npm install && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
@@ -15,9 +15,9 @@ services:
         value: production
       - key: NODE_VERSION
         value: "20.11.0"
-      - key: PYTHON
-        value: python3
       - key: REQUIRE_MONGO
+        value: "true"
+      - key: READ_INTEL_FROM_MONGO
         value: "true"
       - key: MONGODB_DB
         value: ransomware_india
